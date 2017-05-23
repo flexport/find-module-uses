@@ -73,11 +73,11 @@
 // @flow
 const {isArray} = require('lodash');
 
-const {getProfile, renderErr, moduleMatch} = require('./utils.js');
-const {dependentsTree, treeIntersect} = require('./tree_utils.js');
-const renderGraphviz = require('./renderers/graphviz.js');
-const renderTree = require('./renderers/tree.js');
-const renderLevels = require('./renderers/levels.js');
+const {getProfile, renderErr, moduleMatch} = require('../lib/utils.js');
+const {dependentsTree, treeIntersect} = require('../lib/tree_utils.js');
+const renderGraphviz = require('../lib/renderers/graphviz.js');
+const renderTree = require('../lib/renderers/tree.js');
+const renderLevels = require('../lib/renderers/levels.js');
 
 const argv = require('yargs').
   demand(1, 1, 'Please specify a module!').

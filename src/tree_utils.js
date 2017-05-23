@@ -102,6 +102,7 @@ const treeAtPath = <T>(tree: Tree<T>, path: Array<T>): ?Tree<T> => {
 
 // The children are things that need the parent.
 const dependentsTree = (modules: Array<ModuleT>, startName: string): Tree<string> => {
+  console.log(Object.keys(modules[0]));
   const modulesByNeeded = modules.reduce((res, module) => {
     res[module.id] = module.reasons.map(({moduleId}) => moduleId);
     return res;

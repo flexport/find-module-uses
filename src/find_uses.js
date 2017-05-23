@@ -99,10 +99,10 @@
  */
 
 // @flow
-const {getProfile, renderErr, moduleMatch} = require('./utils.js');
-const {getUses, renderUses} = require('./uses.js');
-const {dependentsTree, treeToPaths, treeToExamplePath, treeAtPath, treeIntersect} = require('./tree_utils.js');
-import type {Tree} from './tree_utils';
+const {getProfile, renderErr, moduleMatch} = require('../lib/utils.js');
+const {getUses, renderUses} = require('../lib/uses.js');
+const {dependentsTree, treeToPaths, treeToExamplePath, treeAtPath, treeIntersect} = require('../lib/tree_utils.js');
+import type {Tree} from '../lib/tree_utils';
 
 const argv = require('yargs').
   demand(1, 1, 'Please specify a module!').
