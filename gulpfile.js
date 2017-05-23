@@ -3,7 +3,7 @@ const rename = require('gulp-rename');
 const babel = require('gulp-babel');
 
 gulp.task('lib', () => {
-  return gulp.src(['src/**/*.js', '!src/list_dependents.js', '!src/find_uses.js'])
+  return gulp.src(['src/**/*.js', '!src/show_module_dependents.js', '!src/find_module_uses.js'])
     .pipe(babel({
       "plugins": ['transform-flow-strip-types']
     }))
@@ -11,7 +11,7 @@ gulp.task('lib', () => {
 });
 
 gulp.task('bin', () => {
-  return gulp.src(['src/list_dependents.js', 'src/find_uses.js'])
+  return gulp.src(['src/show_module_dependents.js', 'src/find_module_uses.js'])
     .pipe(rename((path) => {
       path.basename = path.basename.split('_').join('-');
       path.extname = '';
