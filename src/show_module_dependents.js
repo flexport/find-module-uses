@@ -73,8 +73,9 @@
 // @flow
 const {isArray} = require('lodash');
 
-const {getProfile, renderErr, moduleMatch} = require('../lib/utils.js');
-const {dependentsTree, treeIntersect} = require('../lib/tree_utils.js');
+const {dependentsTree, getProfile, moduleMatch} = require('../lib/webpack_utils.js');
+const {treeIntersect} = require('../lib/tree_utils.js');
+const {renderErr} = require('../lib/utils.js');
 const renderGraphviz = require('../lib/renderers/graphviz.js');
 const renderTree = require('../lib/renderers/tree.js');
 const renderLevels = require('../lib/renderers/levels.js');

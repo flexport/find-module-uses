@@ -99,10 +99,10 @@
  */
 
 // @flow
-const {getProfile, renderErr, moduleMatch} = require('../lib/utils.js');
+const {getProfile, moduleMatch, dependentsTree} = require('../lib/webpack_utils.js');
+const {renderErr} = require('../lib/utils.js');
 const {getUses, renderUses} = require('../lib/uses.js');
-const {dependentsTree, treeToPaths, treeToExamplePath, treeAtPath, treeIntersect} = require('../lib/tree_utils.js');
-import type {Tree} from '../lib/tree_utils';
+const {treeIntersect} = require('../lib/tree_utils.js');
 
 const argv = require('yargs').
   demand(1, 1, 'Please specify a module!').
@@ -149,6 +149,7 @@ const run = (profilePromise, startQuery: string, rootQuery: ?string, depth) => {
       return;
     }
 
+    // Consider subsuming into getUses?
     var moduleTree = dependentsTree(modules, startName);
     if (rootName) {
       moduleTree = treeIntersect(moduleTree, rootName);

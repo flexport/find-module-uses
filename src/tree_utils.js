@@ -100,36 +100,12 @@ const treeAtPath = <T>(tree: Tree<T>, path: Array<T>): ?Tree<T> => {
   }
 };
 
-// The children are things that need the parent.
-const dependentsTree = (modules: Array<ModuleT>, startName: string): Tree<string> => {
-  console.log(Object.keys(modules[0]));
-  const modulesByNeeded = modules.reduce((res, module) => {
-    res[module.id] = module.reasons.map(({moduleId}) => moduleId);
-    return res;
-  }, {});
-
-  return (treeFromHash(modulesByNeeded, startName): Tree<string>);
-};
-
-// The children are things the parent needs.
-const dependenciesTree = (modules: Array<ModuleT>, startName: string) => {
-  const modulesByNeeds = modules.reduce((res, module) => {
-    module.reasons.forEach(({moduleId: id}) => {
-      res[id] = res[id] ? res[id].concat([module.id]) : [module.id];
-    });
-    return res;
-  }, {});
-
-  return (treeFromHash(modulesByNeeds, startName): Tree<string>);
-};
-
 module.exports = {
+  treeFromHash,
   treeToPaths,
   treeToExamplePath,
   treeAtPath,
   treeIntersect,
   trimTree,
   flattenTree,
-  dependenciesTree,
-  dependentsTree,
 };

@@ -13,8 +13,8 @@
     "bin"
   ],
   "bin": {
-    "list-dependents": "bin/show-module-dependents",
-    "find-uses": "bin/find-module-uses"
+    "show-module-dependents": "bin/show-module-dependents",
+    "find-module-uses": "bin/find-module-uses"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
