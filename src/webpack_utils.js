@@ -15,21 +15,20 @@ type ModuleT = {
   }>,
 };
 
-const generateProfile = (path: string) => {
+const generateProfile = (webpackPath: string, profilePath: string) => {
   console.log('Generating webpack profile (this may take some time)...');
 
   const nodeCmd = '/usr/bin/env node';
   // Make configurable?
   const nodeFlags = '--max_old_space_size=4096';
-  const wpCmd = 'node_modules/.bin/webpack';
   const wpFlags = '--profile --json --config webpack/config.production.js';
-  return exec(`${nodeCmd} ${nodeFlags} ${wpCmd} ${wpFlags} > ${path}`);
+  return exec(`${nodeCmd} ${nodeFlags} ${webpackPath} ${wpFlags} > ${profilePath}`);
 };
 
-const getProfile = (profileLocation: string, forceRegenProfile: boolean) => {
+const getProfile = (webpackLocation: string, profileLocation: string, forceRegenProfile: boolean) => {
   const shouldGenProfile = forceRegenProfile || !fileIsPresent(profileLocation);
   const profileGenerated = shouldGenProfile ?
-    generateProfile(profileLocation) :
+    generateProfile(webpackLocation, profileLocation) :
     success();
 
   profileGenerated.catch(() => {

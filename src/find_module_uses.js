@@ -26,14 +26,10 @@
  *   -f, --forceRegenProfile  Force regeneration of webpack profile (Slow!)
  *                            [boolean] [default: "false"]
  *
- *   -r, --root               The "root" to find example paths starting from.
- *                            By default theses, are the "apps" (DispatchApp,
- *                            CoreApp, etc)
+ *   -r, --root               The "root" to of the graph to restrict the sarch
+ *                            to. If passed, the script will only return
+ *                            results that are within this subgraph.
  *                            [string]
- *                            [default: ['./core/CoreApp.jsx',
- *                                       './dispatch/DispatchApp.jsx',
- *                                       './www/PublicApp.jsx',
- *                                       './www/ClientApp.jsx']]
  *
  *   -d, --depth              How deep the use paths should be. Ie, if this is
  *                            2, the script will not only find the direct users
@@ -120,7 +116,8 @@ const argv = require('yargs').
   }).
   option('r', {
     alias: 'root',
-    describe: 'The "root" to find example paths starting from. By default theses, are the "apps" (DispatchApp, CoreApp, etc)',
+    describe: 'The "root" to of the graph to restrict the search to. If passed, the script will only return results that are within this subgraph.',
+    type: 'string',
   }).
   option('d', {
     alias: 'depth',
@@ -159,10 +156,12 @@ const run = (profilePromise, startQuery: string, rootQuery: ?string, depth) => {
   });
 };
 
+const webpackLocation = argv.webpackPath;
 const profileLocation = argv.profilePath;
 const forceRegenProfile = argv.forceRegenProfile;
 const startName = argv._[0];
 const rootName = argv.root;
 const depth = +argv.depth;
-const profilePromise = getProfile(profileLocation, forceRegenProfile);
+
+const profilePromise = getProfile(webpackPath, profileLocation, forceRegenProfile);
 run(profilePromise, startName, rootName, depth);

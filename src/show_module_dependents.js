@@ -27,11 +27,19 @@
  *   -p, --profilePath        Location of the profile.json file
  *                            [string] [default: "tmp/profile.json"]
  *
+ *   -w, --webpackPath        Location of the webpack cli command
+ *                            [string] [default: "node_modules/.bin/webpack"]
+ *
  *   -f, --forceRegenProfile  Force regeneration of webpack profile (Slow!)
  *                            [boolean] [default: "false"]
  *
  *   -e, --exclude            Modules to exclude from the hierarchy (Multiple allowed)
  *                            [string] [default: []]
+ *
+ *   -r, --root               The "root" to of the graph to restrict the sarch
+ *                            to. If passed, the script will only return
+ *                            results that are within this subgraph.
+ *                            [string]
  *
  *   -d, --depth              How deep of a hierarchy to display
  *                            [number] [default: "5"]
@@ -82,6 +90,12 @@ const renderLevels = require('../lib/renderers/levels.js');
 
 const argv = require('yargs').
   demand(1, 1, 'Please specify a module!').
+  option('w', {
+    alias: 'webpackPath',
+    default: 'tmp/profile.json',
+    describe: 'Location of the profile.json file',
+    type: 'string',
+  }).
   option('p', {
     alias: 'profilePath',
     default: 'tmp/profile.json',
@@ -96,7 +110,7 @@ const argv = require('yargs').
   }).
   option('r', {
     alias: 'root',
-    describe: 'Root from which to find dependents',
+    describe: 'The "root" to of the graph to restrict the search to. If passed, the script will only return results that are within this subgraph.',
     type: 'string',
   }).
   option('e', {
@@ -167,6 +181,7 @@ const run = (profilePromise, startQuery: string, rootQuery: ?string, ignoreQueri
   });
 };
 
+const webpackLocation = argv.webpackPath;
 const profileLocation = argv.profilePath;
 const forceRegenProfile = argv.forceRegenProfile;
 const startName = argv._[0];
@@ -175,5 +190,5 @@ const ignoreNames = isArray(argv.exclude) ? argv.exclude : [argv.exclude];
 const depth = +argv.depth;
 const mode = argv.mode;
 
-const profilePromise = getProfile(profileLocation, forceRegenProfile);
+const profilePromise = getProfile(webpackPath, profileLocation, forceRegenProfile);
 run(profilePromise, startName, rootName, ignoreNames, mode, depth);
