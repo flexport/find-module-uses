@@ -9,21 +9,25 @@ const toGraphvizId = (value: string): string => {
 
 const renderGraphvizRecursively = (tree: Tree<string>, ignoreNames, depth) => {
   if (depth === 0 || includes(ignoreNames, tree.value)) {
-    return;
+    return '';
   }
 
+  var output = '';
   tree.children.forEach(({value: childVal}) => {
-    console.log(`  "${toGraphvizId(tree.value)}" -> "${toGraphvizId(childVal)}";`);
+    output += `  "${toGraphvizId(tree.value)}" -> "${toGraphvizId(childVal)}";\n`;
   });
   tree.children.forEach((child) => {
-    renderGraphvizRecursively(child, ignoreNames, depth - 1);
+    output += renderGraphvizRecursively(child, ignoreNames, depth - 1);
   });
+  return output;
 };
 
 const renderGraphviz = (moduleTree: Tree<string>, ignoreNames: Array<string>, depth: number) => {
-  console.log('strict digraph {');
-  renderGraphvizRecursively(moduleTree, ignoreNames, depth);
-  console.log('}');
+  var output = '';
+  output += 'strict digraph {\n';
+  output += renderGraphvizRecursively(moduleTree, ignoreNames, depth);
+  output += '}';
+  return output;
 };
 
 module.exports = renderGraphviz;

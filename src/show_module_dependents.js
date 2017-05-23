@@ -156,11 +156,11 @@ const run = (profilePromise, startQuery: string, rootQuery: ?string, ignoreQueri
       moduleTree = treeIntersect(moduleTree, rootName);
     }
     if (mode === 'tree') {
-      renderTree(moduleTree, ignoreNames, depth);
+      console.log(renderTree(moduleTree, ignoreNames, depth));
     } else if (mode === 'graphviz') {
-      renderGraphviz(moduleTree, ignoreNames, depth);
+      console.log(renderGraphviz(moduleTree, ignoreNames, depth));
     } else if (mode === 'flat') {
-      renderLevels(moduleTree, ignoreNames, depth);
+      console.log(renderLevels(moduleTree, ignoreNames, depth));
     } else {
       renderErr(`Unknown mode: ${mode}`);
     }

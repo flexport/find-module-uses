@@ -57,21 +57,21 @@ const linearizeGraph = (
 const renderLevels = (moduleTree: Tree<string>, ignoreNames: Array<string>, depth: number) => {
   const levels = linearizeGraph(moduleTree, ignoreNames).slice(0, depth + 1);
 
-  levels.forEach((modules, idx) => {
+  return levels.reduce((output, modules, idx) => {
     if (idx === 0) {
-      console.log('ROOT MODULE:');
+      output += 'ROOT MODULE:\n';
     } else {
-      console.log(`Level ${idx}`);
+      output += `Level ${idx}\n`;
     }
-    modules.forEach((module) => {
+    output += modules.reduce((output, module) => {
       if (module.trimmed) {
-        console.log(`${module.value} (Excluded, ${module.hiddenCount} child modules hidden)`);
+        return output + `${module.value} (Excluded, ${module.hiddenCount} child modules hidden)\n`;
       } else {
-        console.log(`${module.value}`);
+        return output + `${module.value}\n`;
       }
-    });
-    console.log('\n');
-  });
+    }, '');
+    return output + '\n';
+  }, '');
 };
 
 module.exports = renderLevels;
