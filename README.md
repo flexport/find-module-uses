@@ -117,6 +117,13 @@ To keep things from being too overwhelming, the command only lists 5 levels of t
 `-r`/`--root`
 The "root" to of the graph to restrict the sarch to. If passed, the script will only return results that are within this subgraph.
 
+ `-m`/`--mode`
+Visualization mode. There are three available:
+ * flat: lists each layer of dependents as a flat list.
+ * tree: prints out a formatted tree.
+ * graphviz: prints the tree in the graphviz format (use http://www.webgraphviz.com/ or `dot` to render)
+
+
 ## Examples
 
 ### Basic
