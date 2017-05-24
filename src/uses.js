@@ -45,7 +45,7 @@ const getUses = (moduleTree: *, depth: number) => {
   const uses = usePaths.map((path) => {
     const subTree = treeAtPath(moduleTree, path.slice(1));
     const examplePath = treeToExamplePath(subTree);
-    return [path, path.concat(examplePath)];
+    return [path, path.concat(examplePath.slice(1))];
   });
   return uses;
 };
