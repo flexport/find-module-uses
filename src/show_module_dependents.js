@@ -190,5 +190,5 @@ const ignoreNames = isArray(argv.exclude) ? argv.exclude : [argv.exclude];
 const depth = +argv.depth;
 const mode = argv.mode;
 
-const profilePromise = getProfile(webpackPath, profileLocation, forceRegenProfile);
+const profilePromise = getProfile(webpackLocation, profileLocation, forceRegenProfile);
 run(profilePromise, startName, rootName, ignoreNames, mode, depth);

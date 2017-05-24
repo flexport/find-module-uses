@@ -10,11 +10,10 @@
  * BASIC USAGE
  * =============================================================================
  *
- *     $ yarn list-uses -- $module
+ *     $ find-module-uses $module
  *
  *   This will find the direct users of `$module`, and, for each one, give you
- *   a path starting at the root of one of the apps (eg, dispatch, core, client,
- *   etc) where you can find it.
+ *   a path starting at the root of the module tree where you can find it.
  *
  * =============================================================================
  * FLAGS
@@ -163,5 +162,5 @@ const startName = argv._[0];
 const rootName = argv.root;
 const depth = +argv.depth;
 
-const profilePromise = getProfile(webpackPath, profileLocation, forceRegenProfile);
+const profilePromise = getProfile(webpackLocation, profileLocation, forceRegenProfile);
 run(profilePromise, startName, rootName, depth);
