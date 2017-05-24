@@ -1,13 +1,19 @@
 {
-  "name": "webpack-explorer",
+  "name": "find-module-uses",
   "version": "1.0.0",
-  "description": "A utility to help visualize uses of webpack modules",
-  "main": "deps.js",
+  "description": "A utility to help find dependencies of webpack modules",
+  "author": {
+    "name": "Arjun Kavi",
+    "email": "arjun@flexport.com"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flexport/find-module-uses"
+  },
   "scripts": {
     "test": "npm test"
   },
-  "author": "akavi",
-  "license": "ISC",
   "files": [
     "lib",
     "bin"
