@@ -29,7 +29,7 @@ find-module-uses $ModuleName
 ### Flags
 
 ```
-  -w, --webpackPath        [string] [default: "tmp/profile.json"]
+  -w, --webpackPath        [string] [default: "node_modules/.bin/webpack"]
   -p, --profilePath        [string] [default: "tmp/profile.json"]
   -f, --forceRegenProfile  [boolean] [default: "false"]
   -r, --root               [string]
