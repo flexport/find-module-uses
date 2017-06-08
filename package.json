@@ -1,12 +1,12 @@
 {
   "name": "find-module-uses",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A utility to help find dependencies of webpack modules",
   "author": {
     "name": "Arjun Kavi",
     "email": "arjun@flexport.com"
   },
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/flexport/find-module-uses"
