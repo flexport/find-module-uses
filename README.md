@@ -9,6 +9,14 @@ changes, where you want to be certain that you haven't screwed up the rendering
 dependents of a specific module and visualize/restrict said dependents in
  useful ways.
 
+# Installation
+
+```
+npm install -g find-module-uses
+```
+
+Run this from the comand line to install both utilities.
+
 # find-uses
 
 ## Use
