@@ -1,6 +1,6 @@
 {
   "name": "find-module-uses",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A utility to help find dependencies of webpack modules",
   "author": {
     "name": "Arjun Kavi",
